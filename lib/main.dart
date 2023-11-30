@@ -4,6 +4,7 @@ import 'package:api_dashboard/views/additional_information.dart';
 import 'package:api_dashboard/views/current_weather.dart';
 import 'package:api_dashboard/models/weather_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
 
 IconData getWeatherIcon(double temperature) {
@@ -19,7 +20,8 @@ IconData getWeatherIcon(double temperature) {
   }
 }
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: '.env');
   runApp(const MainApp());
 }
 
@@ -94,9 +96,6 @@ class _HomePageState extends State<HomePage> {
     data = await client.getCurrentWeatherByLocation(lat, long);
   }
 
-  
-
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
